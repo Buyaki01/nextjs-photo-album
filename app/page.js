@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <main>
-      This is the Home page
+      <h1>Welcome to the Photo Album App</h1>
     </main>
   );
 }
