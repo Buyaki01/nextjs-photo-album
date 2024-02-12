@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJs PHOTO ALBUM APP
 
-## Getting Started
+## Overview
+This Next.js application serves as a photo album, fetching data from [JSONPlaceholder](https://jsonplaceholder.typicode.com). The key features include:
 
-First, run the development server:
+- **Landing Page:** A landing section accessible to all app visitors with a brief explanation of what 
+the application does
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **A page to authenticate users (Login page):** Allow users to login to the app using their Google Account
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Authenticated Pages:** Users who are not logged in will only have access to the landing page and will NOT have access to the other pages in the app
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Responsive Design:** The application is built with a responsive design to ensure a consistent and user-friendly experience on various devices, from desktops to mobile phones.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Deployment on Vercel
+This application is deployed using Vercel, providing a scalable and efficient hosting solution. Vercel makes it easy to deploy and manage Next.js applications with built-in features like automatic deployments, serverless functions, and more.
 
-## Learn More
+## Live Demo
 
-To learn more about Next.js, take a look at the following resources:
+## Technologies Used
+- **NextJs**
+- **next-auth**
+- **React**
+- **MongoDB**
+- **Taiwind CSS**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Getting Started
+To get started with this app, follow these steps:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Clone this repository: 
+    ```bash 
+    git clone git@github.com:Buyaki01/nextjs-photo-album.git
+    ```
 
-## Deploy on Vercel
+2. Open the repository: 
+    ```bash 
+    cd nextjs-photo-album
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Install dependencies: 
+    ```bash 
+    npm i
+    npm i next
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. Configure environment variables:
+    Set up your `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` and include them in your `.env` file. 
+    You can obtain these from [Google Cloud Console](https://console.cloud.google.com).
+
+5. Set up MongoDB:
+    Configure your MongoDB connection by adding your `MONGODB_URI` to your `.env` file.
+     
+6. Start the app: 
+    ```bash 
+    npm run dev
+    ``` 
+7. Build the application for production:
+    ```bash
+    npm run build
+    ```
+
+8. Start the application in production mode:
+    ```bash
+    npm start
+    ```
+    Open the app by navigating to http://localhost:3000 in your web browser to view the application in development mode.
+
+
+## Configuration
+Here are the environment variables you need to configure in your `.env` file:
+
+- `GOOGLE_CLIENT_ID`: Your Google Client ID.
+- `GOOGLE_CLIENT_SECRET`: Your Google Client Secret.
+- `MONGODB_URI`: Your MongoDB connection URI.
+
+## Testing
+To ensure code quality and adherence to coding standards, you can run lint checks using the following command:
+    ```bash
+    npm run lint
+    ```
+
+## Author
+👤 **Ritta Sweta**
+
+- Linkedin: [@ritta-sweta](https://www.linkedin.com/in/ritta-sweta)
+- Github: [@Buyaki01](https://github.com/Buyaki01)
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](https://github.com/Buyaki01/nextjs-photo-album/issues)
+
+## Show your support
+
+Give a ⭐️ if you like this project!
