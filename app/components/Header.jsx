@@ -2,7 +2,7 @@ import Link from "next/link"
 
 const Header = () => {
   return (
-    <div className="flex justify-between bg-secondary text-white p-4 items-center">
+    <div className="flex justify-between bg-secondary text-white p-4 items-center mb-4">
       <h1 className="text-3xl font-bold">
         <Link href='/'>Photo Album</Link>
       </h1>
