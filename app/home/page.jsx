@@ -31,7 +31,7 @@ const HomePage = () => {
   }, [])
 
   const getUserAlbumCount = (userId) => {
-    return albums.filter((album) => album.userId === userId).length;
+    return albums.filter((album) => album.userId === userId).length
   }
 
   return (
@@ -44,13 +44,13 @@ const HomePage = () => {
           </div>
         ) 
         : (
-          <div className="grid grid-cols-6 m-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 m-3 gap-2 md:gap-4">
             {users.map(user => (
               <div 
                 key={user.id}
-                className="border w-48 h-48 flex flex-col items-center justify-center"
+                className="border h-48 flex flex-col items-center justify-center"
               >
-                <h3 className="text-primary whitespace-nowrap hover:underline hover:text-[#a00a7c]">
+                <h3 className="text-primary text-lg truncate w-full text-center px-2 hover:underline hover:text-[#a00a7c]">
                   <Link href={`/user/${user.id}`}>{user.name}</Link>
                 </h3>
                 <p>{getUserAlbumCount(user.id)} Albums</p>
