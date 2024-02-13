@@ -50,7 +50,7 @@ const HomePage = () => {
                 key={user.id}
                 className="border h-48 flex flex-col items-center justify-center"
               >
-                <h3 className="text-primary text-lg truncate w-full text-center px-2 hover:underline hover:text-[#a00a7c]">
+                <h3 className="text-primary text-xl truncate w-full text-center px-2 hover:underline hover:text-[#a00a7c]">
                   <Link href={`/user/${user.id}`}>{user.name}</Link>
                 </h3>
                 <p>{getUserAlbumCount(user.id)} Albums</p>
