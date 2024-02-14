@@ -3,6 +3,8 @@
 import Spinner from "@/app/components/Spinner"
 import getAlbum from "@/lib/getAlbum"
 import getAlbumPhotos from "@/lib/getAlbumPhotos"
+import Image from "next/image"
+import Link from "next/link"
 import { useParams, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
@@ -33,7 +35,9 @@ const AlbumPage = () => {
       }
     }
 
-    fetchData()
+    if (albumId) {
+      fetchData()
+    }
   }, [albumId])
 
   return (
@@ -48,7 +52,7 @@ const AlbumPage = () => {
           </svg>
         </div>
         <div className="text-center my-3">
-          <h1 className="text-3xl text-primary">Album Photos</h1>
+          <h1 className="text-3xl text-primary truncate w-full">Album Photos</h1>
         </div>
       </div>
       {loading 
@@ -60,21 +64,25 @@ const AlbumPage = () => {
         : (
           <div className="m-3">
             <div className="text-center my-3">
-              <h1 className="text-xl font-bold">{album.title}&rsquo;s photos</h1>
+              <h1 className="text-xl font-bold truncate w-full">{album.title}&rsquo;s photos</h1>
             </div>
             <div className="m-3">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-4">
                 {albumPhotos.map((photo) => (
-                  <div 
-                    key={photo.id}
-                    className="border h-40 flex flex-col items-center justify-center"
-                  >
-                    <img 
-                      src={photo.thumbnailUrl} 
-                      alt={`Photo ${photo.id}`} 
-                      className="w-full h-full object-cover" 
-                    />
-                  </div>
+                  <Link href={`/photo/${photo.id}`} key={photo.id}>
+                    <div
+                      className="border h-40 flex flex-col items-center justify-center"
+                    >
+                      <Image
+                        src={photo.thumbnailUrl}
+                        alt={photo.title}
+                        className="rounded-lg"
+                        height={150}
+                        width={150}
+                      />
+                    </div>
+                    <p className="truncate w-full">{photo.title}</p>
+                  </Link>
                 ))}
               </div>
             </div>

@@ -33,7 +33,9 @@ const UserPage = () => {
       }
     }
 
-    fetchData()
+    if (userId) {
+      fetchData()
+    }
   }, [userId])
 
   return (
