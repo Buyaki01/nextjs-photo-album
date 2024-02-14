@@ -15,14 +15,13 @@ the application does
 ## Deployment on Vercel
 This application is deployed using Vercel, providing a scalable and efficient hosting solution. Vercel makes it easy to deploy and manage Next.js applications with built-in features like automatic deployments, serverless functions, and more.
 
-## Live Demo
+### Live Demo
 
 ## Technologies Used
-- **NextJs**
-- **next-auth**
-- **React**
-- **MongoDB**
-- **Taiwind CSS**
+- **NextJs**: Framework for building React applications
+- **next-auth**: Authentication library for Next.js
+- **React**: JavaScript library for building user interfaces
+- **Taiwind CSS**: CSS framework for styling the application
 
 ### Getting Started
 To get started with this app, follow these steps:
@@ -40,7 +39,6 @@ To get started with this app, follow these steps:
 3. Install dependencies: 
     ```bash 
     npm i
-    npm i next
     ```
 
 4. Configure environment variables:
@@ -54,30 +52,43 @@ To get started with this app, follow these steps:
     ```bash 
     npm run dev
     ``` 
-7. Build the application for production:
-    ```bash
-    npm run build
-    ```
+    Open the app by navigating to http://localhost:3000 in your web browser to view the application
 
-8. Start the application in production mode:
-    ```bash
-    npm start
-    ```
-    Open the app by navigating to http://localhost:3000 in your web browser to view the application in development mode.
-
-
-## Configuration
+### Configuration
 Here are the environment variables you need to configure in your `.env` file:
 
-- `GOOGLE_CLIENT_ID`: Your Google Client ID.
-- `GOOGLE_CLIENT_SECRET`: Your Google Client Secret.
-- `MONGODB_URI`: Your MongoDB connection URI.
+    - `GOOGLE_CLIENT_ID`: Your Google Client ID.
+    - `GOOGLE_CLIENT_SECRET`: Your Google Client Secret.
+    - `MONGODB_URI`: Your MongoDB connection URI.
+
+**Note:** Ensure that the `.env` file is not committed to version control for security reasons.
+
+## Check Linters
+To ensure code quality and adherence to coding standards, you can run lint checks using the following command:
+```bash
+npm run lint
+```
 
 ## Testing
-To ensure code quality and adherence to coding standards, you can run lint checks using the following command:
-    ```bash
-    npm run lint
-    ```
+To run the tests for this application, use the following command:
+```bash
+npm test
+```
+
+### Writing Tests
+
+If you want to contribute or extend the test coverage, you can find the test files in the `__tests__` directory. Follow these guidelines when writing tests:
+
+- Test files should be named with the `.test.js` extension (e.g., `example.test.js`).
+- Place test files adjacent to the component or page they are testing.
+- Write descriptive test cases to ensure clarity and understanding.
+
+### Test Coverage
+
+To check the test coverage, use the following command:
+```bash
+npm run test:coverage
+```
 
 ## Author
 👤 **Ritta Sweta**
