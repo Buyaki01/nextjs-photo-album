@@ -55,12 +55,11 @@ const UserPage = () => {
         : (
           <div className="m-3">
             <div className="text-center my-3">
-              <h1 className="text-xl font-bold">{user.name}</h1>
+              <h1 className="text-xl font-bold">{user.name}&rsquo;s Albums</h1>
               <p className="italic text-sm">{user.email}</p>
               <p className="italic text-sm">{user.phone && `${user.phone}`}</p>
             </div>
             <div className="m-3">
-              {/* <h3 className="font-bold text-xl mb-2">Albums</h3> */}
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-4">
                 {userAlbums.map((album) => (
                   <div 
