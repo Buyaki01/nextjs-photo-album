@@ -1,5 +1,6 @@
-import Header from "./components/Header";
-import "./globals.css";
+import { Toaster } from "react-hot-toast"
+import Header from "./components/Header"
+import "./globals.css"
 
 export const metadata = {
   title: "Photo Album",
@@ -10,6 +11,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <Toaster position="top-left" />
         <Header/>
         {children}
       </body>

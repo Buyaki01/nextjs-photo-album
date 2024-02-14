@@ -5,6 +5,7 @@ import getUsers from "@/lib/getUsers"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import Spinner from "../components/Spinner"
+import toast from "react-hot-toast"
 
 const HomePage = () => {
   const [users, setUsers] = useState([])
@@ -22,6 +23,7 @@ const HomePage = () => {
         setAlbums(albumsList)
       } catch (error) {
         console.error('Error fetching users:', error)
+        toast.error('Error fetching users data')
       } finally {
         setLoading(false)
       }
