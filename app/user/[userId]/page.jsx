@@ -64,16 +64,17 @@ const UserPage = () => {
             <div className="m-3">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-4">
                 {userAlbums.map((album) => (
-                  <div 
-                    key={album.id}
-                    className="border h-40 flex flex-col items-center justify-center"
-                  >
-                    <h3 
-                      className="text-xl truncate w-full text-center px-3 hover:underline hover:text-[#a00a7c]"
+                  <Link href={`/album/${album.id}`} key={album.id}>
+                    <div
+                      className="border h-40 flex flex-col items-center justify-center"
                     >
-                      <Link href={`/album/${album.id}`}>{album.title}</Link>
-                    </h3>  
-                  </div>
+                      <h3 
+                        className="text-xl truncate w-full text-center px-3 hover:underline hover:text-[#a00a7c]"
+                      > 
+                        {album.title}
+                      </h3>  
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>

@@ -2,6 +2,7 @@
 
 import Spinner from "@/app/components/Spinner"
 import getPhoto from "@/lib/getPhoto"
+import updatePhotoTitle from "@/lib/updatePhotoTitle"
 import Image from "next/image"
 import { useParams, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -10,6 +11,8 @@ import toast from "react-hot-toast"
 const EditPhotoPage = () => {
   const [loading, setLoading] = useState(true)
   const [photo, setPhoto] = useState(null)
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+  const [editedTitle, setEditedTitle] = useState("")
 
   const router = useRouter()
 
@@ -34,6 +37,26 @@ const EditPhotoPage = () => {
       fetchPhoto()
     }
   }, [photoId])
+
+  const openEditModal = () => {
+    setIsEditModalOpen(true)
+    setEditedTitle(photo.title)
+  }
+
+  const closeEditModal = () => {
+    setIsEditModalOpen(false)
+  }
+
+  const saveEditedTitle = async () => {
+    try {
+      await updatePhotoTitle(photoId, editedTitle)
+      toast.success('Photo title updated successfully')
+      closeEditModal()
+    } catch (error) {
+      console.error('Error updating photo title:', error)
+      toast.error('Failed to update photo title')
+    }
+  }
 
   return (
     <div>
@@ -69,9 +92,41 @@ const EditPhotoPage = () => {
               <p className="mt-2 text-center text-lg font-semibold">{photo.title}</p>
               <button 
                 className="mt-2 bg-primary text-white px-4 py-2 rounded-md"
+                onClick={openEditModal}
               >
                 Edit Photo Title
               </button>
+
+              {isEditModalOpen && (
+                <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+                  <div className="bg-white p-6 rounded-md w-1/2">
+                    <label htmlFor="editedTitle" className="block text-sm font-medium text-gray-700">
+                      Edit Photo Title
+                    </label>
+                    <input
+                      type="text"
+                      id="editedTitle"
+                      className="mt-1 p-2 border rounded-md w-full"
+                      value={editedTitle}
+                      onChange={(e) => setEditedTitle(e.target.value)}
+                    />
+                    <div className="mt-4 flex justify-end gap-2">
+                      <button
+                        className="bg-primary text-white px-4 py-2 rounded-md"
+                        onClick={saveEditedTitle}
+                      >
+                        Save
+                      </button>
+                      <button
+                        className="bg-gray-700 text-white px-4 py-2 rounded-md"
+                        onClick={closeEditModal}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )

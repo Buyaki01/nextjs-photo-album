@@ -1,6 +1,6 @@
-const updatePhotoTitle = async (photoId, newTitle) => { 
+const updatePhotoTitle = async (photoId, editedTitle) => { 
   const url = await fetch(`https://jsonplaceholder.typicode.com/photos/${photoId}`)
-  
+
   try {
     const response = await fetch(url, {
       method: 'PATCH',
@@ -8,17 +8,21 @@ const updatePhotoTitle = async (photoId, newTitle) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        title: newTitle,
+        title: editedTitle,
       }),
-    });
+    })
 
     if (!response.ok) {
       throw new Error('Failed to update photo title')
     }
 
-    return response.json()
+    const responseData = await response.json()
+
+    return responseData
   } catch (error) {
     console.error('Error updating photo title:', error)
+    const errorMessage = await error.response.text()
+    console.error('Server response:', errorMessage)
     throw error
   }
 }
