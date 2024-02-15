@@ -7,11 +7,10 @@ const LandingPage = () => {
         <h1 className="text-4xl font-bold text-primary mb-4">
           Discover Your Memories with Our Photo Album App
         </h1>
-        <p className="text-gray-700 text-lg mb-8">
+        <p className="text-gray-700 text-md md:text-lg mb-2">
           Explore and organize your memories with our photo album application.
-          <br />
-          Ready to get started? Login with your Google account below:
         </p>
+        <p className="text-gray-700 text-lg mb-6"><span className="font-bold">Ready to get started?</span> Login with your Google account below:</p>
         <div className="flex justify-center">
           <button 
             className="bg-gray-500 flex items-center justify-center gap-3 rounded-lg w-2/3 text-white px-6 py-3 font-semibold hover:bg-opacity-80"
