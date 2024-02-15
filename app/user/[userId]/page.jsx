@@ -1,5 +1,6 @@
 'use client'
 
+import BackArrow from "@/app/components/BackArrow"
 import Spinner from "@/app/components/Spinner"
 import getUser from "@/lib/getUser"
 import getUserAlbums from "@/lib/getUserAlbums"
@@ -7,6 +8,7 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
+import { BiPhotoAlbum } from "react-icons/bi"
 
 const UserPage = () => {
   const [loading, setLoading] = useState(true)
@@ -33,19 +35,19 @@ const UserPage = () => {
       }
     }
 
-    fetchData()
+    if (userId) {
+      fetchData()
+    }
   }, [userId])
 
   return (
     <div>
       <div>
-        <div className="cursor-pointer text-secondary font-bold" onClick={() => history.back()}>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-          </svg>
+        <div className="cursor-pointer text-secondary font-bold mx-3" onClick={() => history.back()}>
+          <BackArrow />
         </div>
         <div className="text-center my-3">
-          <h1 className="text-3xl text-primary">User Albums</h1>
+          <h1 className="text-3xl text-primary">User&rsquo;s Albums</h1>
         </div>
       </div>
       {loading 
@@ -54,24 +56,29 @@ const UserPage = () => {
           </div>
         : (
           <div className="m-3">
-            <div className="text-center my-3">
+            <div className="text-center my-5">
               <h1 className="text-xl font-bold">{user.name}&rsquo;s Albums</h1>
               <p className="italic text-sm">{user.email}</p>
               <p className="italic text-sm">{user.phone && `${user.phone}`}</p>
+              <p className="italic text-sm">
+                {user.address && `${user.address.street}, ${user.address.suite}, ${user.address.city}, ${user.address.zipcode}`}
+              </p>
             </div>
             <div className="m-3">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-4 p-4">
                 {userAlbums.map((album) => (
-                  <div 
-                    key={album.id}
-                    className="border h-40 flex flex-col items-center justify-center"
-                  >
+                  <Link href={`/album/${album.id}`} key={album.id}>
+                    <div
+                      className="p-2 border border-gray-300 rounded-xl h-24 flex flex-col items-center justify-center"
+                    >
+                      <BiPhotoAlbum className="text-primary text-4xl"/>
+                    </div>
                     <h3 
                       className="text-xl truncate w-full text-center px-3 hover:underline hover:text-[#a00a7c]"
-                    >
-                      <Link href={`/album/${album.id}`}>{album.title}</Link>
-                    </h3>  
-                  </div>
+                    > 
+                      {album.title}
+                    </h3> 
+                  </Link>
                 ))}
               </div>
             </div>
