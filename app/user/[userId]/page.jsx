@@ -7,6 +7,7 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
+import { BiPhotoAlbum } from "react-icons/bi"
 
 const UserPage = () => {
   const [loading, setLoading] = useState(true)
@@ -47,7 +48,7 @@ const UserPage = () => {
           </svg>
         </div>
         <div className="text-center my-3">
-          <h1 className="text-3xl text-primary">User Albums</h1>
+          <h1 className="text-3xl text-primary">User&rsquo;s Albums</h1>
         </div>
       </div>
       {loading 
@@ -56,24 +57,28 @@ const UserPage = () => {
           </div>
         : (
           <div className="m-3">
-            <div className="text-center my-3">
+            <div className="text-center my-5">
               <h1 className="text-xl font-bold">{user.name}&rsquo;s Albums</h1>
               <p className="italic text-sm">{user.email}</p>
               <p className="italic text-sm">{user.phone && `${user.phone}`}</p>
+              <p className="italic text-sm">
+                {user.address && `${user.address.street}, ${user.address.suite}, ${user.address.city}, ${user.address.zipcode}`}
+              </p>
             </div>
             <div className="m-3">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-4 p-4">
                 {userAlbums.map((album) => (
                   <Link href={`/album/${album.id}`} key={album.id}>
                     <div
-                      className="border h-40 flex flex-col items-center justify-center"
+                      className="p-2 border border-gray-300 rounded-xl h-24 flex flex-col items-center justify-center"
                     >
-                      <h3 
-                        className="text-xl truncate w-full text-center px-3 hover:underline hover:text-[#a00a7c]"
-                      > 
-                        {album.title}
-                      </h3>  
+                      <BiPhotoAlbum className="text-primary text-4xl"/>
                     </div>
+                    <h3 
+                      className="text-xl truncate w-full text-center px-3 hover:underline hover:text-[#a00a7c]"
+                    > 
+                      {album.title}
+                    </h3> 
                   </Link>
                 ))}
               </div>
