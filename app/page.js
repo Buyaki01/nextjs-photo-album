@@ -1,7 +1,9 @@
+import LandingPage from "./components/LandingPage";
+
 export default function Home() {
   return (
     <main>
-      <h1>Welcome to the Photo Album App</h1>
+      <LandingPage />
     </main>
   );
 }
