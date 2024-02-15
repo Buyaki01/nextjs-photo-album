@@ -1,6 +1,9 @@
+import { auth } from "@/auth"
 import { FaGoogle } from "react-icons/fa"
 
-const LandingPage = () => {
+const LandingPage = async () => {
+  const session = await auth()
+
   return ( 
     <div className="-mt-4 pt-10 p-5 flex items-center justify-center">
       <div className="text-center">
@@ -20,6 +23,8 @@ const LandingPage = () => {
           </button>
         </div>
       </div>
+
+      {/* {JSON.stringify(session)} */}
     </div>
   )
 }

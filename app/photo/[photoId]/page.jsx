@@ -72,7 +72,7 @@ const EditPhotoPage = () => {
         >
           <BackArrow />
         </div>
-        <div className="text-center my-3">
+        <div className="text-center mt-3 mb-5">
           <h1 className="text-3xl text-primary">Album Photo</h1>
         </div>
       </div>
@@ -83,8 +83,8 @@ const EditPhotoPage = () => {
             </div>
           ) 
         : (
-          <div className="mx-auto max-w-lg">
-            <div className="flex flex-col items-center">
+          <div className="border border-gray-300 p-4 my-3 mx-8 grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div className="flex flex-col items-center p-4">
               <Image
                 src={photo.thumbnailUrl}
                 alt={photo.title}
@@ -92,13 +92,20 @@ const EditPhotoPage = () => {
                 height={150}
                 width={150}
               />
-              <p className="mt-2 text-center text-lg font-semibold overflow-hidden whitespace-nowrap overflow-ellipsis">{photo.title}</p>
-              <button 
-                className="mt-2 bg-primary text-white px-4 py-2 rounded-md"
-                onClick={openEditModal}
-              >
-                Edit Photo Title
-              </button>
+            </div>
+
+            <div className="flex flex-col p-4">
+              <p className="text-lg text-wrap">
+                <span className="font-semibold">Title: </span> {photo.title}
+              </p>
+              <div className="flex justify-center py-2">
+                <button
+                  className="mt-4 bg-primary text-white px-4 py-2 rounded-md w-2/3"
+                  onClick={openEditModal}
+                >
+                  Edit Photo Title
+                </button>
+              </div>
 
               {isEditModalOpen && (
                 <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
