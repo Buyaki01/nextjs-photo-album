@@ -8,7 +8,7 @@ export default function Error({ error, reset }) {
   }, [error])
  
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center justify-center min-h-screen">
       <h2 className="text-3xl font-bold mb-4 text-red-500">Something went wrong!</h2>
       <p className="text-gray-600 mb-5">
         Please try again later.
