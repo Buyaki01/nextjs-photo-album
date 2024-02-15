@@ -16,9 +16,7 @@ const updatePhotoTitle = async (photoId, editedTitle) => {
       throw new Error('Failed to update photo title')
     }
 
-    const responseData = await response.json()
-
-    return responseData
+    return true
   } catch (error) {
     console.error('Error updating photo title:', error)
     const errorMessage = await error.response.text()

@@ -1,5 +1,6 @@
 'use client'
 
+import BackArrow from "@/app/components/BackArrow"
 import Spinner from "@/app/components/Spinner"
 import getAlbum from "@/lib/getAlbum"
 import getAlbumPhotos from "@/lib/getAlbumPhotos"
@@ -44,15 +45,13 @@ const AlbumPage = () => {
     <div>
       <div>
         <div 
-          className="cursor-pointer text-secondary font-bold" 
+          className="cursor-pointer text-secondary font-bold mx-3" 
           onClick={() => router.back()}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-          </svg>
+          <BackArrow />
         </div>
         <div className="text-center my-3">
-          <h1 className="text-3xl text-primary truncate w-full">Album Photos</h1>
+          <h1 className="text-3xl text-primary truncate w-full">Album&rsquo;s Photos</h1>
         </div>
       </div>
       {loading 

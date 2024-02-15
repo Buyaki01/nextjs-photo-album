@@ -1,5 +1,6 @@
 'use client'
 
+import BackArrow from "@/app/components/BackArrow"
 import Spinner from "@/app/components/Spinner"
 import getPhoto from "@/lib/getPhoto"
 import updatePhotoTitle from "@/lib/updatePhotoTitle"
@@ -49,9 +50,13 @@ const EditPhotoPage = () => {
 
   const saveEditedTitle = async () => {
     try {
-      await updatePhotoTitle(photoId, editedTitle)
-      toast.success('Photo title updated successfully')
-      closeEditModal()
+      const success = await updatePhotoTitle(photoId, editedTitle)
+      if (success) {
+        toast.success('Photo title updated successfully')
+        closeEditModal()
+      } else {
+        toast.error('Failed to update photo title')
+      }
     } catch (error) {
       console.error('Error updating photo title:', error)
       toast.error('Failed to update photo title')
@@ -62,15 +67,13 @@ const EditPhotoPage = () => {
     <div>
       <div>
         <div 
-          className="cursor-pointer text-secondary font-bold" 
+          className="cursor-pointer text-secondary font-bold mx-3" 
           onClick={() => router.back()}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-          </svg>
+          <BackArrow />
         </div>
         <div className="text-center my-3">
-          <h1 className="text-3xl text-primary">Edit Photo Title</h1>
+          <h1 className="text-3xl text-primary">Album Photo</h1>
         </div>
       </div>
       {loading 
@@ -89,7 +92,7 @@ const EditPhotoPage = () => {
                 height={150}
                 width={150}
               />
-              <p className="mt-2 text-center text-lg font-semibold">{photo.title}</p>
+              <p className="mt-2 text-center text-lg font-semibold overflow-hidden whitespace-nowrap overflow-ellipsis">{photo.title}</p>
               <button 
                 className="mt-2 bg-primary text-white px-4 py-2 rounded-md"
                 onClick={openEditModal}
