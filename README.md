@@ -6,7 +6,7 @@ This Next.js application serves as a photo album, fetching data from [JSONPlaceh
 - **Landing Page:** A landing section accessible to all app visitors with a brief explanation of what 
 the application does
 
-- **A page to authenticate users (Login page):** Allow users to login to the app using their Google Account
+- **A page to authenticate users (Login page):** Allow users to login to the app using their GitHub account
 
 - **Authenticated Pages:** Users who are not logged in will only have access to the landing page and will NOT have access to the other pages in the app
 
@@ -19,7 +19,7 @@ This application is deployed using Vercel, providing a scalable and efficient ho
 
 ## Technologies Used
 - **NextJs**: Framework for building React applications
-- **next-auth**: Authentication library for Next.js
+- **next-auth (v5)**: Authentication library for Next.js
 - **React**: JavaScript library for building user interfaces
 - **Taiwind CSS**: CSS framework for styling the application
 
@@ -42,9 +42,12 @@ To get started with this app, follow these steps:
     ```
 
 4. Configure environment variables:
-    Set up your `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` and include them in your `.env` file. 
-    You can obtain these from [Google Cloud Console](https://console.cloud.google.com).
-
+    Set up your `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` and include them in your `.env` file. 
+    #### Steps to Get GitHub Client ID and Client Secret:
+    - Go to your Github profile and click on settings
+    - Scroll down to Developer settings
+    - Click on OAuth apps and then click on New OAuth App button and fill in all the required fields
+    
 5. Set up MongoDB:
     Configure your MongoDB connection by adding your `MONGODB_URI` to your `.env` file.
      
@@ -57,8 +60,8 @@ To get started with this app, follow these steps:
 ### Configuration
 Here are the environment variables you need to configure in your `.env` file:
 
-    - `GOOGLE_CLIENT_ID`: Your Google Client ID.
-    - `GOOGLE_CLIENT_SECRET`: Your Google Client Secret.
+    - `GITHUB_CLIENT_ID`: Your Github Client ID.
+    - `GITHUB_CLIENT_SECRET`: Your Github Client Secret.
     - `MONGODB_URI`: Your MongoDB connection URI.
 
 **Note:** Ensure that the `.env` file is not committed to version control for security reasons.
