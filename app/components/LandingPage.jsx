@@ -1,12 +1,12 @@
 'use client'
 
-import { FaGoogle } from "react-icons/fa"
+import { FaGithub } from "react-icons/fa"
 import { signIn } from "next-auth/react"
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes"
 
 const LandingPage = () => {
-  const handleGoogleSignIn = () => {
-    signIn("google", {
+  const handleGithubSignIn = () => {
+    signIn("github", {
       callbackUrl: DEFAULT_LOGIN_REDIRECT
     })
   }
@@ -23,14 +23,14 @@ const LandingPage = () => {
         <p className="text-gray-700 text-lg mb-2">
           Ready to get started? 
         </p>
-        <p className="text-gray-700 text-lg mb-6 font-bold"> Please login with your Google account below before proceeding to the Home Page</p>
+        <p className="text-gray-700 text-lg mb-6 font-bold"> Please login with your Github account below before proceeding to the Home Page</p>
         <div className="flex justify-center">
           <button
-            onClick={handleGoogleSignIn}
+            onClick={handleGithubSignIn}
             className="flex items-center justify-center gap-2 bg-gray-400 rounded-lg w-2/3 text-white px-4 py-2 font-semibold hover:bg-opacity-80"
           >
-            <FaGoogle className="text-lg"/>
-            Continue with Google
+            <FaGithub className="text-lg"/>
+            Continue with Github
           </button>
         </div>
       </div>
