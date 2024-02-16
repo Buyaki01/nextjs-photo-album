@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const Footer = () => {
   return (
-    <footer className="bg-secondary hover:bg-secondary hover:text-white text-white p-2 font-bold text-lg">
+    <footer className="bg-secondary hover:bg-secondary hover:text-white text-white p-2 font-bold text-lg mt-3">
       <div className='flex justify-center'>
         <p>&copy; {new Date().getFullYear()} Photo Album. All Rights Reserved.</p>
       </div>

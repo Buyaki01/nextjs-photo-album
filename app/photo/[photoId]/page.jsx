@@ -83,7 +83,7 @@ const EditPhotoPage = () => {
             </div>
           ) 
         : (
-          <div className="border border-gray-300 p-4 my-3 mx-8 grid grid-cols-1 md:grid-cols-2 gap-2">
+          <div className="border border-gray-300 p-4 my-3 mx-8 grid grid-cols-1 md:grid-cols-5 gap-2">
             <div className="flex flex-col items-center p-4">
               <Image
                 src={photo.thumbnailUrl}
@@ -94,13 +94,13 @@ const EditPhotoPage = () => {
               />
             </div>
 
-            <div className="flex flex-col p-4">
+            <div className="flex flex-col col-span-4 p-4">
               <p className="text-lg text-wrap">
                 <span className="font-semibold">Title: </span> {photo.title}
               </p>
-              <div className="flex justify-center py-2">
+              <div className="py-2">
                 <button
-                  className="mt-4 bg-primary text-white px-4 py-2 rounded-md w-2/3"
+                  className="mt-4 bg-primary text-white px-4 py-2 rounded-md"
                   onClick={openEditModal}
                 >
                   Edit Photo Title
