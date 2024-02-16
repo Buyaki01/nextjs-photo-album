@@ -63,7 +63,7 @@ const AlbumPage = () => {
         : (
           <div className="m-3">
             <div className="text-center my-3">
-              <h1 className="text-xl font-bold truncate w-full">{album.title}&rsquo;s photos</h1>
+              <h1 className="text-xl font-bold truncate w-full">{album.title.charAt(0).toUpperCase() + album.title.slice(1)} Album&rsquo;s photos</h1>
             </div>
             <div className="m-3">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-4">
