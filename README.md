@@ -18,10 +18,13 @@ This application is deployed using Vercel, providing a scalable and efficient ho
 ### Live Demo
 
 ## Technologies Used
-- **NextJs**: Framework for building React applications
-- **next-auth (v5)**: Authentication library for Next.js
-- **React**: JavaScript library for building user interfaces
-- **Taiwind CSS**: CSS framework for styling the application
+- **NextJs**
+- **Next-auth (v5)**
+- **React**
+- **Taiwind CSS**
+- **MongoDB**
+- **Jest**
+- **React Testing Library**
 
 ### Getting Started
 To get started with this app, follow these steps:
@@ -42,14 +45,15 @@ To get started with this app, follow these steps:
     ```
 
 4. Configure environment variables:
-    Set up your `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` and include them in your `.env` file. 
+    - Set up your `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` and include them in your `.env` file.
+
     #### Steps to Get GitHub Client ID and Client Secret:
     - Go to your Github profile and click on settings
     - Scroll down to Developer settings
     - Click on OAuth apps and then click on New OAuth App button and fill in all the required fields
     
 5. Set up MongoDB:
-    Configure your MongoDB connection by adding your `MONGODB_URI` to your `.env` file.
+   - Configure your MongoDB connection by setting it up on the [MongoDB website](https://www.mongodb.com) and add your `MONGODB_URI` to your `.env` file.
      
 6. Start the app: 
     ```bash 
@@ -75,7 +79,7 @@ npm run lint
 ## Testing
 To run the tests for this application, use the following command:
 ```bash
-npm test
+npm run test
 ```
 
 ### Writing Tests
