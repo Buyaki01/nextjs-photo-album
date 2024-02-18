@@ -1,7 +1,7 @@
 'use client'
 
 import getAlbums from "@/lib/getAlbums"
-import getUsers from "@/lib/getUsers"
+import getUsers from "@/lib/getUsers/getUsers"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
