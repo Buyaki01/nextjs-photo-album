@@ -79,7 +79,7 @@ npm run lint
 ## Testing
 To run the tests for this application, use the following command:
 ```bash
-npm run test
+npm test
 ```
 
 ### Writing Tests
