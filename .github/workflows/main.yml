@@ -23,9 +23,6 @@ jobs:
       - name: Run linting
         run: npm run lint
 
-      - name: Run test
-        run: npm test
-
   test:
     runs-on: ubuntu-latest
     steps:
