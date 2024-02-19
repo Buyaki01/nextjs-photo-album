@@ -2,6 +2,10 @@ import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import LandingPage from '../LandingPage'
 
+jest.mock('next-auth/react')
+
+//Getting this error message: Cannot find module 'next-auth/react' from 'app/components/landingPage/LandingPage.jsx'
+
 describe('LandingPage', () => {
   it('should render a landing page with title, description, and Github sign-in button', () => {
     render(<LandingPage />)
