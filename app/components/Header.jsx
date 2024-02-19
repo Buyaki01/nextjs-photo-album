@@ -35,7 +35,7 @@ const Header = () => {
     <div className="flex justify-between bg-secondary text-white p-4 items-center mb-4">
       <h1 className="text-3xl font-bold p-2">
         <Link
-          className="cursor-pointer hover:text-primary"
+          className="cursor-pointer hover:underline"
           href={user && user.length > 0 ? '/home' : '/'}
         >
           Photo Album
@@ -47,7 +47,7 @@ const Header = () => {
             onClick={checkUser}
           >
             <Link
-              className="cursor-pointer hover:text-primary"
+              className="cursor-pointer hover:underline"
               href='/home'
             >
               Home
