@@ -6,10 +6,17 @@ import Link from "next/link"
 import { AiFillCaretDown } from "react-icons/ai"
 import SignoutModal from "./SignoutModal"
 import { useState } from "react"
+import toast from "react-hot-toast"
 
 const Header = () => {
   const user = useCurrentUser()
   const [isSignOutModalOpen, setIsSignOutModalOpen] = useState(false)
+
+  const checkUser = () => {
+    if (!user) {
+      toast.error("Kindly login before proceeding to the Home Page")
+    }
+  }
 
   const handleSignOutClick = () => {
     setIsSignOutModalOpen(true)
@@ -27,14 +34,25 @@ const Header = () => {
   return (
     <div className="flex justify-between bg-secondary text-white p-4 items-center mb-4">
       <h1 className="text-3xl font-bold p-2">
-        <Link href='/'>Photo Album</Link>
+        <Link
+          className="cursor-pointer hover:text-primary"
+          href={user && user.length > 0 ? '/home' : '/'}
+        >
+          Photo Album
+        </Link>
       </h1>
       <div className="flex gap-4 p-2 items-center text-xl">
         <div>
-          <Link
-            className="cursor-pointer hover:text-primary"
-            href='/home'
-            >Home</Link>
+          <button
+            onClick={checkUser}
+          >
+            <Link
+              className="cursor-pointer hover:text-primary"
+              href='/home'
+            >
+              Home
+            </Link>
+          </button>
         </div>
 
         <div>
