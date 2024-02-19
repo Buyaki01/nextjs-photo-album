@@ -1,5 +1,5 @@
 import { Toaster } from "react-hot-toast"
-import Header from "./components/Header"
+import Header from "./components/header/Header"
 import "./globals.css"
 import Footer from "./components/Footer"
 import { SessionProvider } from "next-auth/react"
