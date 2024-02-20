@@ -17,6 +17,7 @@ const UserPage = () => {
 
   const params = useParams()
   const { userId } = params
+  console.log("This is the userId params: ", userId)
 
   useEffect(() => {
     const fetchData = async () => {

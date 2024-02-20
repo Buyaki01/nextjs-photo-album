@@ -96,7 +96,6 @@ describe('HomePage', () => {
   })
 
   it('should render UsersList when loading is false', async () => {
-    console.log("Testing console log outside loop")
     render(<HomePage loading={false} users={mockUsers} setUsers={mockSetUsers} albums={mockAlbums} setAlbums={mockSetAlbums} />)
 
     await waitFor(() => {

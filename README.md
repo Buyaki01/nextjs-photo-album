@@ -18,7 +18,7 @@ This application is deployed using Vercel, providing a scalable and efficient ho
 ### Live Demo
 
 ## Technologies Used
-- **NextJs**
+- **NextJs (v14)**
 - **Next-auth (v5)**
 - **React**
 - **Taiwind CSS**
@@ -112,3 +112,5 @@ Feel free to check the [issues page](https://github.com/Buyaki01/nextjs-photo-al
 ## Show your support
 
 Give a ⭐️ if you like this project!
+
+(Built with Next.js v14)
