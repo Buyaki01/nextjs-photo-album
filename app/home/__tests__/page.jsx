@@ -103,6 +103,10 @@ describe('HomePage', () => {
       mockUsers.forEach(async (user) => {
         const username = await screen.findByTestId(`user-name-${user.id}`)
         expect(username).toBeInTheDocument()
+
+        const userAlbumCount = mockAlbums.filter(album => album.userId === user.id).length
+        const userAlbumCountText = screen.getByText(`${userAlbumCount} Albums`)
+        expect(userAlbumCountText).toBeInTheDocument()
       })
     })
   })
