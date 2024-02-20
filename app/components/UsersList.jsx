@@ -1,5 +1,6 @@
 import Link from "next/link"
-const UsersList = ({user, albums}) => {
+
+const UsersList = ({ user, albums}) => {
   const getUserAlbumCount = (userId) => {
     return albums.filter((album) => album.userId === userId).length
   }
