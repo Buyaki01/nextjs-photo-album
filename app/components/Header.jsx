@@ -2,7 +2,6 @@
 
 import { useCurrentUser } from "@/hooks/use-current-user"
 import { signOut } from "next-auth/react"
-import Link from "next/link"
 import { AiFillCaretDown } from "react-icons/ai"
 import SignoutModal from "./SignoutModal"
 import { useState } from "react"
