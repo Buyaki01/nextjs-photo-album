@@ -2,20 +2,24 @@
 
 import { useCurrentUser } from "@/hooks/use-current-user"
 import { signOut } from "next-auth/react"
-import Link from "next/link"
 import { AiFillCaretDown } from "react-icons/ai"
 import SignoutModal from "./SignoutModal"
 import { useState } from "react"
 import toast from "react-hot-toast"
+import { useRouter } from "next/navigation"
 
 const Header = () => {
   const user = useCurrentUser()
   const [isSignOutModalOpen, setIsSignOutModalOpen] = useState(false)
+  const router = useRouter()
 
-  const checkUser = () => {
+  const navigateToHome = () => {
     if (!user) {
-      toast.error("Kindly login before proceeding to the Home Page")
+      toast.error("Please login before proceeding to the homepage")
+      return
     }
+
+    router.push('/home')
   }
 
   const handleSignOutClick = () => {
@@ -34,24 +38,20 @@ const Header = () => {
   return (
     <div className="flex justify-between bg-secondary text-white p-4 items-center mb-4">
       <h1 className="text-3xl font-bold p-2">
-        <Link
+        <button
           className="cursor-pointer hover:underline"
-          href={user && user.length > 0 ? '/home' : '/'}
+          onClick={navigateToHome}
         >
           Photo Album
-        </Link>
+        </button>
       </h1>
       <div className="flex gap-4 p-2 items-center text-xl">
         <div>
           <button
-            onClick={checkUser}
+            className="cursor-pointer hover:underline"
+            onClick={navigateToHome}
           >
-            <Link
-              className="cursor-pointer hover:underline"
-              href='/home'
-            >
-              Home
-            </Link>
+            Home
           </button>
         </div>
 
