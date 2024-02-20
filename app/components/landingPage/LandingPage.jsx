@@ -27,7 +27,7 @@ const LandingPage = () => {
         <div className="flex justify-center">
           <button
             onClick={handleGithubSignIn}
-            className="flex items-center justify-center gap-2 bg-[#9129C4] rounded-lg w-2/3 text-white px-4 py-2 font-semibold hover:bg-opacity-80"
+            className="flex items-center justify-center gap-2 bg-primary rounded-lg w-2/3 text-white px-4 py-2 font-semibold hover:bg-opacity-80"
           >
             <FaGithub className="text-lg"/>
             Continue with Github
