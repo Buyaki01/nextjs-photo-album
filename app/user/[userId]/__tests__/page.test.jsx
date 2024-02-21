@@ -54,8 +54,6 @@ jest.mock('next/navigation', () => ({
   }),
 }))
 
-jest.mock('react-hot-toast')
-
 describe('User Page', () => {
   it('should render a header with the text "User’s Albums"', () => {
     render(<UserPage />)
@@ -68,21 +66,28 @@ describe('User Page', () => {
     expect(screen.getByTestId('loading-spinner')).toBeInTheDocument()
   })
 
-  it("should render a User's Albums when loading is false", async () => {
+  it("should render user information when loading is false", async () => {
     render(<UserPage loading={false} />)
 
     await waitFor(async () => {
       const userName = screen.getByTestId('user-name')
-      const userEmail = screen.getByTestId('user-email')
-      const userPhone = screen.getByTestId('user-phone')
-
       expect(userName).toHaveTextContent("Leanne Graham’s Albums")
-      expect(userEmail).toHaveTextContent('Sincere@april.biz')
-      expect(userPhone).toHaveTextContent('1-770-736-8031 x56442')
+    })
+    const userEmail = screen.getByTestId('user-email')
+    const userPhone = screen.getByTestId('user-phone')
+    expect(userEmail).toHaveTextContent('Sincere@april.biz')
+    expect(userPhone).toHaveTextContent('1-770-736-8031 x56442')
+  })
 
-      mockAlbum.forEach(async (album) => {
-        const albumTitle = await screen.findByText(album.title)
-        expect(albumTitle).toBeInTheDocument()
+  describe("User's Albums", () => {
+    it("should render user's albums when loading is false", async () => {
+      render(<UserPage loading={false} />)
+  
+      await waitFor(() => {
+        mockAlbum.forEach(async (album) => {
+          const albumTitle = await screen.findByText(album.title)
+          expect(albumTitle).toBeInTheDocument()
+        })
       })
     })
   })
