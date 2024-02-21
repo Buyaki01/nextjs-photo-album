@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom'
 import { render, screen, waitFor } from '@testing-library/react'
 import HomePage from '../page'
+import toast from 'react-hot-toast'
 
 const mockUsers = [
   {
@@ -51,8 +52,6 @@ const mockUsers = [
   }
 ]
 
-const mockSetUsers = jest.fn()
-
 const mockAlbums = [
   {
     "userId": 1,
@@ -81,7 +80,8 @@ const mockAlbums = [
   }
 ]
 
-const mockSetAlbums = jest.fn()
+jest.mock('../../../lib/getUsers', () => jest.fn(() => Promise.resolve(mockUsers)))
+jest.mock('../../../lib/getAlbums', () => jest.fn(() => Promise.resolve(mockAlbums)))
 
 describe('HomePage', () => {
   it('should render a header with the text "Users"', () => {
@@ -96,8 +96,7 @@ describe('HomePage', () => {
   })
 
   it('should render UsersList when loading is false', async () => {
-    console.log("Testing console log outside loop")
-    render(<HomePage loading={false} users={mockUsers} setUsers={mockSetUsers} albums={mockAlbums} setAlbums={mockSetAlbums} />)
+    render(<HomePage loading={false} />)
 
     await waitFor(() => {
       mockUsers.forEach(async (user) => {
