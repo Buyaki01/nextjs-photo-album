@@ -2,7 +2,7 @@ import '@testing-library/jest-dom'
 import { render, screen, waitFor } from '@testing-library/react'
 import UserPage from '../page'
 
-jest.mock('@/lib/geUser', () => jest.fn(() => Promise.resolve(mockUser)))
+jest.mock('@/lib/getUser', () => jest.fn(() => Promise.resolve(mockUser)))
 jest.mock('@/lib/getUserAlbums', () => jest.fn(() => Promise.resolve(mockAlbum)))
 
 jest.mock('next/navigation', () => ({
