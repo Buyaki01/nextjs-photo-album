@@ -51,7 +51,7 @@ const AlbumPage = () => {
           <BackArrow />
         </div>
         <div className="text-center my-3">
-          <h1 className="text-3xl text-primary truncate w-full">Album&rsquo;s Photos</h1>
+          <h1 data-testid="album-name" className="text-3xl text-primary truncate w-full">Album&rsquo;s Photos</h1>
         </div>
       </div>
       {loading 

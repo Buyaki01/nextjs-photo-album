@@ -26,7 +26,7 @@ const mockUser = {
   }
 }
 
-const mockAlbum = [
+const mockAlbums = [
   {
     "userId": 1,
     "id": 8,
@@ -45,7 +45,7 @@ const mockAlbum = [
 ]
 
 jest.mock('../../../../lib/getUser', () => jest.fn(() => Promise.resolve(mockUser)))
-jest.mock('../../../../lib/getUserAlbums', () => jest.fn(() => Promise.resolve(mockAlbum)))
+jest.mock('../../../../lib/getUserAlbums', () => jest.fn(() => Promise.resolve(mockAlbums)))
 
 jest.mock('next/navigation', () => ({
   ...jest.requireActual('next/navigation'),
@@ -69,7 +69,7 @@ describe('User Page', () => {
   it("should render user information when loading is false", async () => {
     render(<UserPage loading={false} />)
 
-    await waitFor(async () => {
+    await waitFor(() => {
       const userName = screen.getByTestId('user-name')
       expect(userName).toHaveTextContent("Leanne Graham’s Albums")
     })
@@ -79,15 +79,13 @@ describe('User Page', () => {
     expect(userPhone).toHaveTextContent('1-770-736-8031 x56442')
   })
 
-  describe("User's Albums", () => {
-    it("should render user's albums when loading is false", async () => {
-      render(<UserPage loading={false} />)
-  
-      await waitFor(() => {
-        mockAlbum.forEach(async (album) => {
-          const albumTitle = await screen.findByText(album.title)
-          expect(albumTitle).toBeInTheDocument()
-        })
+  it("should render user's albums when loading is false", async () => {
+    render(<UserPage loading={false} />)
+
+    await waitFor(() => {
+      mockAlbums.forEach(async (album) => {
+        const albumTitle = await screen.findByText(album.title)
+        expect(albumTitle).toBeInTheDocument()
       })
     })
   })
