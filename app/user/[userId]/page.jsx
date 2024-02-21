@@ -17,7 +17,6 @@ const UserPage = () => {
 
   const params = useParams()
   const { userId } = params
-  console.log("This is the userId params: ", userId)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,9 +57,9 @@ const UserPage = () => {
         : (
           <div className="m-3">
             <div className="text-center my-5">
-              <h1 className="text-xl font-bold">{user.name}&rsquo;s Albums</h1>
-              <p className="italic text-sm">{user.email}</p>
-              <p className="italic text-sm">{user.phone && `${user.phone}`}</p>
+              <h1 data-testid="user-name" className="text-xl font-bold">{user.name}&rsquo;s Albums</h1>
+              <p data-testid="user-email" className="italic text-sm">{user.email}</p>
+              <p data-testid="user-phone" className="italic text-sm">{user.phone && `${user.phone}`}</p>
               <p className="italic text-sm">
                 {user.address && `${user.address.street}, ${user.address.suite}, ${user.address.city}, ${user.address.zipcode}`}
               </p>
