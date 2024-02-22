@@ -1,11 +1,10 @@
 'use client'
 
-import getAlbums from "@/lib/getAlbums"
-import getUsers from "@/lib/getUsers"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 import Spinner from "../components/Spinner"
 import Link from "next/link"
+import axios from "axios"
 
 const HomePage = () => {
   const [users, setUsers] = useState([])
@@ -15,10 +14,10 @@ const HomePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userList = await getUsers()
+        const userList = await axios.get('/api/users')
         setUsers(userList)
 
-        const albumsList = await getAlbums()
+        const albumsList = await axios.get('/api/albums')
         setAlbums(albumsList)
       } catch (error) {
         console.error('Error fetching users and albums in the homepage', error)
