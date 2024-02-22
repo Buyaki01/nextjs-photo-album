@@ -52,6 +52,9 @@ jest.mock('next/navigation', () => ({
   useParams: () => ({
     userId: '1',
   }),
+  useRouter: () => ({
+    back: jest.fn()
+  }),
 }))
 
 describe('User Page', () => {

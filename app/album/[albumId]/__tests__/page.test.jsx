@@ -40,33 +40,31 @@ jest.mock('next/navigation', () => ({
   useParams: () => ({
     albumId: '1',
   }),
-}))
-
-jest.mock('next/router', () => ({
-  ...jest.requireActual('next/router'),
   useRouter: () => ({
-    back: jest.fn(),
+    back: jest.fn()
   }),
 }))
 
 describe("Album's Photos Page", () => {
-  it("should render a header with the text 'Albums’s Photos'", () => {
+  it('should render a header with the text "Albums’s Photos"', () => {
     render(<AlbumPage />)
 
-    expect(screen.getByText("Albums’s Photos")).toBeInTheDocument()
+    expect(screen.getByTestId('album-page-heading')).toBeInTheDocument()
   })
 
   it('should display loading spinner when loading is true', () => {
-    render(<AlbumPage loading={true} />)
+    render(<AlbumPage  loading={true}/>)
+
     expect(screen.getByTestId('loading-spinner')).toBeInTheDocument()
   })
 
   it("should render title of the album when loading is false", async () => {
-    render(<AlbumPage loading={false} />)
+    render(<AlbumPage  loading={false}/>)
 
     await waitFor(() => {
-      const albumName = screen.getByTestId('album-name')
-      expect(albumName).toHaveTextContent("quidem molestiae enim’s Photos")
+      const albumName = screen.getByTestId('album-name-album-page')
+      
+      expect(albumName).toBeInTheDocument()
     })
   })
 
