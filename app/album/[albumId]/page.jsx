@@ -70,7 +70,7 @@ const AlbumPage = () => {
             </div>
             <div className="m-3">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-4">
-                {albumPhotos.map((photo) => (
+                {albumPhotos && albumPhotos.map((photo) => (
                   <Link href={`/photo/${photo.id}`} key={photo.id}>
                     <div
                       className="border h-40 flex flex-col items-center justify-center"

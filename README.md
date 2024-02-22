@@ -1,5 +1,7 @@
 # NextJs PHOTO ALBUM APP
 
+Explore the [Live Demo](https://photo-album.vercel.app) to experience the Next.js Photo Album app in action! This application is deployed using Vercel, providing a scalable and efficient hosting solution. Vercel makes it easy to deploy and manage Next.js applications with built-in features like automatic deployments, serverless functions, and more.
+
 ## Overview
 This Next.js application serves as a photo album, fetching data from [JSONPlaceholder](https://jsonplaceholder.typicode.com). The key features include:
 
@@ -11,11 +13,6 @@ the application does
 - **Authenticated Pages:** Users who are not logged in will only have access to the landing page and will NOT have access to the other pages in the app
 
 - **Responsive Design:** The application is built with a responsive design to ensure a consistent and user-friendly experience on various devices, from desktops to mobile phones.
-
-## Deployment on Vercel
-This application is deployed using Vercel, providing a scalable and efficient hosting solution. Vercel makes it easy to deploy and manage Next.js applications with built-in features like automatic deployments, serverless functions, and more.
-
-### Live Demo
 
 ## Technologies Used
 - **NextJs (v14)**
