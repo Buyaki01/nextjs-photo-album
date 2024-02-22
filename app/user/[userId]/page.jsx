@@ -30,8 +30,8 @@ const UserPage = () => {
         setUserAlbums(albumsList)
 
       } catch (error) {
-        console.error('Error fetching data:', error)
-        toast.error('Error fetching user albums data')
+        console.error('Error fetching user and user albums in the Album page:', error)
+        toast.error('Sorry, something went wrong! Please try again')
       } finally {
         setLoading(false)
       }

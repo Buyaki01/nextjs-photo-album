@@ -27,8 +27,8 @@ const AlbumPage = () => {
         const albumPhotosList = await getAlbumPhotos(albumId)
         setAlbumPhotos(albumPhotosList)
       } catch (error) {
-        console.error('Error fetching data:', error)
-        toast.error('Error fetching album data')
+        console.error('Error fetching album and album photos data:', error)
+        toast.error('Sorry, something went wrong! Please try again')
       } finally {
         setLoading(false)
       }
@@ -84,7 +84,7 @@ const AlbumPage = () => {
                       />
                     </div>
                     <p 
-                      className="truncate w-full"
+                      className="truncate w-full text-center"
                       data-testid="photo-name"
                     >
                       {photo.title}

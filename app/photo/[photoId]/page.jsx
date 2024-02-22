@@ -28,7 +28,7 @@ const EditPhotoPage = () => {
 
       } catch (error) {
         console.error('Error fetching photo data:', error)
-        toast.error('Error fetching photo data')
+        toast.error('Sorry, something went wrong! Please try again')
       } finally {
         setLoading(false)
       }
@@ -55,11 +55,11 @@ const EditPhotoPage = () => {
         toast.success('Photo title updated successfully')
         closeEditModal()
       } else {
-        toast.error('Failed to update photo title')
+        toast.error('Sorry, something went wrong! Please try again')
       }
     } catch (error) {
       console.error('Error updating photo title:', error)
-      toast.error('Failed to update photo title')
+      toast.error('Sorry, something went wrong! Please try again')
     }
   }
 

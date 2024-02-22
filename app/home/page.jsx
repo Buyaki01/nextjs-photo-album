@@ -21,8 +21,8 @@ const HomePage = () => {
         const albumsList = await getAlbums()
         setAlbums(albumsList)
       } catch (error) {
-        console.error('Error fetching users')
-        toast.error('Error fetching users data')
+        console.error('Error fetching users and albums in the homepage', error)
+        toast.error('Sorry, something went wrong! Please try again')
       } finally {
         setLoading(false)
       }
