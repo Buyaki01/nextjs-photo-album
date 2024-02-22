@@ -73,8 +73,12 @@ describe("Album's Photos Page", () => {
 
     await waitFor(() => {
       mockAlbumPhotos.forEach(async (photo) => {
-        const photoTitle = await screen.findByText(photo.title)
-        expect(photoTitle).toBeInTheDocument()
+        const photoImage = await screen.findByAltText(photo.title)
+        expect(photoImage).toHaveAttribute("src", photo.thumbnailUrl)
+  
+        const photoTitles = await screen.findAllByText(photo.title)
+        expect(photoTitles).toHaveLength(1)
+        expect(photoTitles[0]).toBeInTheDocument()
       })
     })
   })

@@ -65,7 +65,7 @@ const AlbumPage = () => {
                 className="text-xl font-bold truncate w-full"
                 data-testid="album-name-album-page"
               >
-                {album.title.charAt(0).toUpperCase() + album.title.slice(1)} Album's Photos
+                {album.title.charAt(0).toUpperCase() + album.title.slice(1)} Album&rsquo;s Photos
               </h1>
             </div>
             <div className="m-3">
