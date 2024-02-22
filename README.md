@@ -22,6 +22,7 @@ the application does
 - **MongoDB**
 - **Jest**
 - **React Testing Library**
+- **Winston**: To create a logging service for application errors
 
 ### Getting Started
 To get started with this app, follow these steps:

@@ -15,10 +15,10 @@ const HomePage = () => {
     const fetchData = async () => {
       try {
         const userList = await axios.get('/api/users')
-        setUsers(userList)
+        setUsers(userList.data)
 
         const albumsList = await axios.get('/api/albums')
-        setAlbums(albumsList)
+        setAlbums(albumsList.data)
       } catch (error) {
         console.error('Error fetching users and albums in the homepage', error)
         toast.error('Sorry, something went wrong! Please try again')
@@ -45,7 +45,7 @@ const HomePage = () => {
         ) 
         : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 m-3 gap-2 md:gap-6 p-3">
-            {users.map(user => (
+            {users.map((user) => (
               <Link
                 key={user.id}
                 href={`/user/${user.id}`} 

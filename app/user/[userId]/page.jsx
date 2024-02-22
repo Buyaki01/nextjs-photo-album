@@ -2,8 +2,7 @@
 
 import BackArrow from "@/app/components/BackArrow"
 import Spinner from "@/app/components/Spinner"
-import getUser from "@/lib/getUser"
-import getUserAlbums from "@/lib/getUserAlbums"
+import axios from "axios"
 import Link from "next/link"
 import { useParams, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -23,11 +22,10 @@ const UserPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userData = await getUser(userId)
-        setUser(userData)
-
-        const albumsList = await getUserAlbums(userId)
-        setUserAlbums(albumsList)
+        const userData = await axios.get(`/api/users/${userId}`)
+        
+        setUser(userData.data.user)
+        setUserAlbums(userData.data.albums)
 
       } catch (error) {
         console.error('Error fetching user and user albums in the Album page:', error)

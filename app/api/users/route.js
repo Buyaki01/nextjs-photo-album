@@ -1,5 +1,5 @@
-import getUsers from "@/lib/getUsers";
-import logger from "@/services/logger";
+import getUsers from "@/lib/getUsers"
+import logger from "@/services/logger"
 import { NextResponse } from "next/server"
 
 export const GET = async () => {
