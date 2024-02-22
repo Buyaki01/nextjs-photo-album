@@ -9,6 +9,7 @@
 # testing
 /coverage
 
+# Ignore log files
 *.log
 
 # next.js
