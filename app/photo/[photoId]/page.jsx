@@ -73,7 +73,7 @@ const EditPhotoPage = () => {
           <BackArrow />
         </div>
         <div className="text-center mt-3 mb-5">
-          <h1 className="text-3xl text-primary">Album Photo</h1>
+          <h1 data-testid="heading-photo-page" className="text-3xl text-primary">Album Photo</h1>
         </div>
       </div>
       {loading 
@@ -85,21 +85,30 @@ const EditPhotoPage = () => {
         : (
           <div className="border border-gray-300 p-4 my-3 mx-8 grid grid-cols-1 md:grid-cols-5 gap-2">
             <div className="flex flex-col items-center p-4">
-              <Image
-                src={photo.thumbnailUrl}
-                alt={photo.title}
-                className="rounded-lg"
-                height={150}
-                width={150}
-              />
+              {photo && (
+                <Image
+                  src={photo.thumbnailUrl}
+                  alt={photo.title}
+                  className="rounded-lg"
+                  height={150}
+                  width={150}
+                  data-testid="photoimage-photo-page"
+                />
+              )}
             </div>
 
             <div className="flex flex-col col-span-4 p-4">
-              <p className="text-lg text-wrap">
-                <span className="font-semibold">Title: </span> {photo.title}
-              </p>
+              {photo && (
+                <div>
+                  <p data-testid="photoname-photo-page" className="text-lg text-wrap">
+                    <span className="font-semibold"> Title: </span> {photo.title}
+                  </p>
+                </div>
+              )}
+              
               <div className="py-2">
                 <button
+                  data-testid="editname-photo-page"
                   className="mt-4 bg-primary text-white px-4 py-2 rounded-md"
                   onClick={openEditModal}
                 >
@@ -128,6 +137,7 @@ const EditPhotoPage = () => {
                         Save
                       </button>
                       <button
+                        data-testid="cancel"
                         className="bg-gray-700 text-white px-4 py-2 rounded-md"
                         onClick={closeEditModal}
                       >
