@@ -14,9 +14,7 @@ const AlbumPage = () => {
   const [loading, setLoading] = useState(true)
   const [album, setAlbum] = useState(null)
   const [albumPhotos, setAlbumPhotos] = useState([])
-
   const router = useRouter()
-
   const params = useParams()
   const { albumId } = params
 
@@ -51,7 +49,7 @@ const AlbumPage = () => {
           <BackArrow />
         </div>
         <div className="text-center my-3">
-          <h1 className="text-3xl text-primary truncate w-full">Album&rsquo;s Photos</h1>
+          <h1 data-testid="album-page-heading" className="text-3xl text-primary truncate w-full">Album&rsquo;s Photos</h1>
         </div>
       </div>
       {loading 
@@ -63,7 +61,12 @@ const AlbumPage = () => {
         : (
           <div className="m-3">
             <div className="text-center my-3">
-              <h1 className="text-xl font-bold truncate w-full">{album.title.charAt(0).toUpperCase() + album.title.slice(1)} Album&rsquo;s photos</h1>
+              <h1 
+                className="text-xl font-bold truncate w-full"
+                data-testid="album-name-album-page"
+              >
+                {album.title.charAt(0).toUpperCase() + album.title.slice(1)} Album&rsquo;s Photos
+              </h1>
             </div>
             <div className="m-3">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-4">
@@ -80,7 +83,12 @@ const AlbumPage = () => {
                         width={150}
                       />
                     </div>
-                    <p className="truncate w-full">{photo.title}</p>
+                    <p 
+                      className="truncate w-full"
+                      data-testid="photo-name"
+                    >
+                      {photo.title}
+                    </p>
                   </Link>
                 ))}
               </div>

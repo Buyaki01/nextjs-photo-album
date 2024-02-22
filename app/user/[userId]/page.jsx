@@ -5,7 +5,7 @@ import Spinner from "@/app/components/Spinner"
 import getUser from "@/lib/getUser"
 import getUserAlbums from "@/lib/getUserAlbums"
 import Link from "next/link"
-import { useParams } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 import { BiPhotoAlbum } from "react-icons/bi"
@@ -14,6 +14,8 @@ const UserPage = () => {
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState(null)
   const [userAlbums, setUserAlbums] = useState([])
+
+  const router = useRouter()
 
   const params = useParams()
   const { userId } = params
@@ -43,7 +45,7 @@ const UserPage = () => {
   return (
     <div>
       <div>
-        <div className="cursor-pointer text-secondary font-bold mx-3" onClick={() => history.back()}>
+        <div className="cursor-pointer text-secondary font-bold mx-3" onClick={() => router.back()}>
           <BackArrow />
         </div>
         <div className="text-center my-3">
