@@ -2,8 +2,7 @@
 
 import BackArrow from "@/app/components/BackArrow"
 import Spinner from "@/app/components/Spinner"
-import getAlbum from "@/lib/getAlbum"
-import getAlbumPhotos from "@/lib/getAlbumPhotos"
+import axios from "axios"
 import Image from "next/image"
 import Link from "next/link"
 import { useParams, useRouter } from "next/navigation"
@@ -21,14 +20,12 @@ const AlbumPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const albumData = await getAlbum(albumId)
-        setAlbum(albumData)
-
-        const albumPhotosList = await getAlbumPhotos(albumId)
-        setAlbumPhotos(albumPhotosList)
+        const response = await axios.get(`/api/albums/${albumId}`)
+        setAlbum(response.data.album)
+        setAlbumPhotos(response.data.photos)
       } catch (error) {
-        console.error('Error fetching data:', error)
-        toast.error('Error fetching album data')
+        console.error('Error fetching album and album photos data:', error)
+        toast.error('Sorry, something went wrong! Please try again')
       } finally {
         setLoading(false)
       }
@@ -63,9 +60,9 @@ const AlbumPage = () => {
             <div className="text-center my-3">
               <h1 
                 className="text-xl font-bold truncate w-full"
-                data-testid="album-name-album-page"
+                data-testid="album-name-heading"
               >
-                {album.title.charAt(0).toUpperCase() + album.title.slice(1)} Album&rsquo;s Photos
+                {album && album.title.charAt(0).toUpperCase() + album.title.slice(1)} Album&rsquo;s Photos
               </h1>
             </div>
             <div className="m-3">
@@ -84,7 +81,7 @@ const AlbumPage = () => {
                       />
                     </div>
                     <p 
-                      className="truncate w-full"
+                      className="truncate w-full text-center"
                       data-testid="photo-name"
                     >
                       {photo.title}

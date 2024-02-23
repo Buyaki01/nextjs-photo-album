@@ -2,8 +2,7 @@
 
 import BackArrow from "@/app/components/BackArrow"
 import Spinner from "@/app/components/Spinner"
-import getPhoto from "@/lib/getPhoto"
-import updatePhotoTitle from "@/lib/updatePhotoTitle"
+import axios from "axios"
 import Image from "next/image"
 import { useParams, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -23,12 +22,12 @@ const EditPhotoPage = () => {
   useEffect(() => {
     const fetchPhoto = async () => {
       try {
-        const photoData = await getPhoto(photoId)
-        setPhoto(photoData)
+        const response = await axios.get(`/api/photos/${photoId}`)
+        setPhoto(response.data)
 
       } catch (error) {
         console.error('Error fetching photo data:', error)
-        toast.error('Error fetching photo data')
+        toast.error('Sorry, something went wrong! Please try again')
       } finally {
         setLoading(false)
       }
@@ -50,16 +49,17 @@ const EditPhotoPage = () => {
 
   const saveEditedTitle = async () => {
     try {
-      const success = await updatePhotoTitle(photoId, editedTitle)
-      if (success) {
+      const response = await axios.patch(`/api/photos/${photoId}`, { photoId, editedTitle })
+
+      if (response.status === 200) {
         toast.success('Photo title updated successfully')
         closeEditModal()
       } else {
-        toast.error('Failed to update photo title')
+        toast.error('Sorry, something went wrong! Please try again')
       }
     } catch (error) {
       console.error('Error updating photo title:', error)
-      toast.error('Failed to update photo title')
+      toast.error('Sorry, something went wrong! Please try again')
     }
   }
 
@@ -92,7 +92,7 @@ const EditPhotoPage = () => {
                   className="rounded-lg"
                   height={150}
                   width={150}
-                  data-testid="photoimage-photo-page"
+                  priority={true}
                 />
               )}
             </div>
@@ -100,7 +100,7 @@ const EditPhotoPage = () => {
             <div className="flex flex-col col-span-4 p-4">
               {photo && (
                 <div>
-                  <p data-testid="photoname-photo-page" className="text-lg text-wrap">
+                  <p data-testid="title-of-photoImage" className="text-lg text-wrap">
                     <span className="font-semibold"> Title: </span> {photo.title}
                   </p>
                 </div>
@@ -108,9 +108,10 @@ const EditPhotoPage = () => {
               
               <div className="py-2">
                 <button
-                  data-testid="editname-photo-page"
                   className="mt-4 bg-primary text-white px-4 py-2 rounded-md"
                   onClick={openEditModal}
+                  aria-label="Edit Photo Title"
+                  type="button"
                 >
                   Edit Photo Title
                 </button>

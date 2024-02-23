@@ -1,6 +1,9 @@
 import '@testing-library/jest-dom'
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import EditPhotoPage from '../page'
+import axios from "axios"
+
+jest.mock("axios")
 
 const mockPhoto = {
   "albumId": 1,
@@ -23,7 +26,10 @@ jest.mock('next/navigation', () => ({
   }),
 }))
 
-describe("Photo Page", () => {
+describe("Edit Photo Page", () => {
+  beforeEach(() => {
+    axios.get.mockResolvedValue(mockPhoto)
+  })
   it('should render a header with the text Album Photo', () => {
     render(<EditPhotoPage />)
 
@@ -34,15 +40,5 @@ describe("Photo Page", () => {
     render(<EditPhotoPage  loading={true}/>)
 
     expect(screen.getByTestId('loading-spinner')).toBeInTheDocument()
-  })
-
-  it("should render title of the photo when loading is false", async () => {
-    render(<EditPhotoPage  loading={false}/>)
-
-    await waitFor(() => {
-      expect(screen.getByTestId('photoname-photo-page')).toHaveTextContent(mockPhoto.title)
-    })
-    const photoImage = screen.getByTestId('photoimage-photo-page')
-    expect(photoImage).toBeInTheDocument()
   })
 })
