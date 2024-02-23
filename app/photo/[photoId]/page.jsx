@@ -2,8 +2,7 @@
 
 import BackArrow from "@/app/components/BackArrow"
 import Spinner from "@/app/components/Spinner"
-import getPhoto from "@/lib/getPhoto"
-import updatePhotoTitle from "@/lib/updatePhotoTitle"
+import axios from "axios"
 import Image from "next/image"
 import { useParams, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -23,8 +22,8 @@ const EditPhotoPage = () => {
   useEffect(() => {
     const fetchPhoto = async () => {
       try {
-        const photoData = await getPhoto(photoId)
-        setPhoto(photoData)
+        const response = await axios.get(`/api/photos/${photoId}`)
+        setPhoto(response.data)
 
       } catch (error) {
         console.error('Error fetching photo data:', error)
@@ -50,8 +49,9 @@ const EditPhotoPage = () => {
 
   const saveEditedTitle = async () => {
     try {
-      const success = await updatePhotoTitle(photoId, editedTitle)
-      if (success) {
+      const response = await axios.patch(`/api/photos/${photoId}`, { photoId, editedTitle })
+
+      if (response.status === 200) {
         toast.success('Photo title updated successfully')
         closeEditModal()
       } else {
