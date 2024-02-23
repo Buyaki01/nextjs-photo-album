@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom'
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import EditPhotoPage from '../page'
 import axios from "axios"
 
@@ -16,8 +16,6 @@ const mockPhoto = {
 jest.mock('../../../../lib/getPhoto', () => jest.fn(() => Promise.resolve(mockPhoto)))
 jest.mock('../../../../lib/updatePhotoTitle', () => jest.fn(() => Promise.resolve(mockPhoto)))
 
-axios.get.mockResolvedValue(mockPhoto)
-
 jest.mock('next/navigation', () => ({
   ...jest.requireActual('next/navigation'),
   useParams: () => ({
@@ -28,7 +26,10 @@ jest.mock('next/navigation', () => ({
   }),
 }))
 
-describe("Photo Page", () => {
+describe("Edit Photo Page", () => {
+  beforeEach(() => {
+    axios.get.mockResolvedValue(mockPhoto)
+  })
   it('should render a header with the text Album Photo', () => {
     render(<EditPhotoPage />)
 

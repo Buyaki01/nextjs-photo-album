@@ -108,9 +108,10 @@ const EditPhotoPage = () => {
               
               <div className="py-2">
                 <button
-                  data-testid="editname-photo-page"
                   className="mt-4 bg-primary text-white px-4 py-2 rounded-md"
                   onClick={openEditModal}
+                  aria-label="Edit Photo Title"
+                  type="button"
                 >
                   Edit Photo Title
                 </button>
