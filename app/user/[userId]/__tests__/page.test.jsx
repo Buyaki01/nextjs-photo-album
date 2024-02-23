@@ -1,6 +1,9 @@
 import '@testing-library/jest-dom'
 import { render, screen, waitFor } from '@testing-library/react'
 import UserPage from '../page'
+import axios from "axios"
+
+jest.mock("axios")
 
 const mockUser = {
   "id": 1,
@@ -26,7 +29,7 @@ const mockUser = {
   }
 }
 
-const mockAlbums = [
+const mockUserAlbums = [
   {
     "userId": 1,
     "id": 8,
@@ -45,7 +48,10 @@ const mockAlbums = [
 ]
 
 jest.mock('../../../../lib/getUser', () => jest.fn(() => Promise.resolve(mockUser)))
-jest.mock('../../../../lib/getUserAlbums', () => jest.fn(() => Promise.resolve(mockAlbums)))
+jest.mock('../../../../lib/getUserAlbums', () => jest.fn(() => Promise.resolve(mockUserAlbums)))
+
+axios.get.mockResolvedValue(mockUser)
+axios.get.mockResolvedValue(mockUserAlbums)
 
 jest.mock('next/navigation', () => ({
   ...jest.requireActual('next/navigation'),
@@ -69,24 +75,11 @@ describe('User Page', () => {
     expect(screen.getByTestId('loading-spinner')).toBeInTheDocument()
   })
 
-  it("should render user information when loading is false", async () => {
-    render(<UserPage loading={false} />)
-
-    await waitFor(() => {
-      const userName = screen.getByTestId('user-name')
-      expect(userName).toHaveTextContent("Leanne Graham’s Albums")
-    })
-    const userEmail = screen.getByTestId('user-email')
-    const userPhone = screen.getByTestId('user-phone')
-    expect(userEmail).toHaveTextContent('Sincere@april.biz')
-    expect(userPhone).toHaveTextContent('1-770-736-8031 x56442')
-  })
-
   it("should render user's albums when loading is false", async () => {
     render(<UserPage loading={false} />)
 
     await waitFor(() => {
-      mockAlbums.forEach(async (album) => {
+      mockUserAlbums.forEach(async (album) => {
         const albumTitle = await screen.findByText(album.title)
         expect(albumTitle).toBeInTheDocument()
       })

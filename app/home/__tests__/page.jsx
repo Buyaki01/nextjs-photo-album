@@ -1,7 +1,9 @@
 import '@testing-library/jest-dom'
 import { render, screen, waitFor } from '@testing-library/react'
 import HomePage from '../page'
-import toast from 'react-hot-toast'
+import axios from "axios"
+
+jest.mock("axios")
 
 const mockUsers = [
   {
@@ -82,6 +84,9 @@ const mockAlbums = [
 
 jest.mock('../../../lib/getUsers', () => jest.fn(() => Promise.resolve(mockUsers)))
 jest.mock('../../../lib/getAlbums', () => jest.fn(() => Promise.resolve(mockAlbums)))
+
+axios.get.mockResolvedValue(mockUsers)
+axios.get.mockResolvedValue(mockAlbums)
 
 describe('HomePage', () => {
   it('should render a header with the text "Users"', () => {

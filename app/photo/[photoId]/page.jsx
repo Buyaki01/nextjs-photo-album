@@ -92,7 +92,7 @@ const EditPhotoPage = () => {
                   className="rounded-lg"
                   height={150}
                   width={150}
-                  data-testid="photoimage-photo-page"
+                  priority={true}
                 />
               )}
             </div>
@@ -100,7 +100,7 @@ const EditPhotoPage = () => {
             <div className="flex flex-col col-span-4 p-4">
               {photo && (
                 <div>
-                  <p data-testid="photoname-photo-page" className="text-lg text-wrap">
+                  <p data-testid="title-of-photoImage" className="text-lg text-wrap">
                     <span className="font-semibold"> Title: </span> {photo.title}
                   </p>
                 </div>

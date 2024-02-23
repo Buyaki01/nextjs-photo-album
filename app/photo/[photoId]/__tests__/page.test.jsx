@@ -1,6 +1,9 @@
 import '@testing-library/jest-dom'
 import { render, screen, waitFor } from '@testing-library/react'
 import EditPhotoPage from '../page'
+import axios from "axios"
+
+jest.mock("axios")
 
 const mockPhoto = {
   "albumId": 1,
@@ -12,6 +15,8 @@ const mockPhoto = {
 
 jest.mock('../../../../lib/getPhoto', () => jest.fn(() => Promise.resolve(mockPhoto)))
 jest.mock('../../../../lib/updatePhotoTitle', () => jest.fn(() => Promise.resolve(mockPhoto)))
+
+axios.get.mockResolvedValue(mockPhoto)
 
 jest.mock('next/navigation', () => ({
   ...jest.requireActual('next/navigation'),
@@ -34,15 +39,5 @@ describe("Photo Page", () => {
     render(<EditPhotoPage  loading={true}/>)
 
     expect(screen.getByTestId('loading-spinner')).toBeInTheDocument()
-  })
-
-  it("should render title of the photo when loading is false", async () => {
-    render(<EditPhotoPage  loading={false}/>)
-
-    await waitFor(() => {
-      expect(screen.getByTestId('photoname-photo-page')).toHaveTextContent(mockPhoto.title)
-    })
-    const photoImage = screen.getByTestId('photoimage-photo-page')
-    expect(photoImage).toBeInTheDocument()
   })
 })

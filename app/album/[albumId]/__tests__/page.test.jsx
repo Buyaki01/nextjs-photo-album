@@ -1,6 +1,9 @@
 import '@testing-library/jest-dom'
 import { render, screen, waitFor } from '@testing-library/react'
 import AlbumPage from '../page'
+import axios from "axios"
+
+jest.mock("axios")
 
 const mockAlbum = {
   "userId": 1,
@@ -35,6 +38,9 @@ const mockAlbumPhotos = [
 jest.mock('../../../../lib/getAlbum', () => jest.fn(() => Promise.resolve(mockAlbum)))
 jest.mock('../../../../lib/getAlbumPhotos', () => jest.fn(() => Promise.resolve(mockAlbumPhotos)))
 
+axios.get.mockResolvedValue(mockAlbum)
+axios.get.mockResolvedValue(mockAlbumPhotos)
+
 jest.mock('next/navigation', () => ({
   ...jest.requireActual('next/navigation'),
   useParams: () => ({
@@ -62,7 +68,7 @@ describe("Album's Photos Page", () => {
     render(<AlbumPage  loading={false}/>)
 
     await waitFor(() => {
-      const albumName = screen.getByTestId('album-name-album-page')
+      const albumName = screen.getByTestId('album-name-heading')
       
       expect(albumName).toBeInTheDocument()
     })
