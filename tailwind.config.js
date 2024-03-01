@@ -15,10 +15,16 @@ module.exports = {
       colors: {
         'primary': '#d40d9a',
         'secondary': 'rgb(146, 212, 59)',
+        'light-secondary': 'rgb(175, 254, 71)',
+        'dark-secondary': 'rgb(117, 170, 47)',
+        'mobile-menu': 'rgb(176, 232, 89)',
       },
       backgroundColor: {
         'primary': '#d40d9a',
         'secondary': 'rgb(146, 212, 59)',
+        'light-secondary': 'rgb(175, 254, 71)',
+        'dark-secondary': 'rgb(117, 170, 47)',
+        'mobile-menu': 'rgb(176, 232, 89)',
       },
     },
   },

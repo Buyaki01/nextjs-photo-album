@@ -1,9 +1,9 @@
 import { Toaster } from "react-hot-toast"
-import Header from "./components/Header"
 import "./globals.css"
 import Footer from "./components/Footer"
 import { SessionProvider } from "next-auth/react"
 import { auth } from "@/auth"
+import Navbar from "./components/navbar/Navbar"
 
 export const metadata = {
   title: "Photo Album",
@@ -19,7 +19,7 @@ export default async function RootLayout({ children }) {
         <body className="min-h-screen flex flex-col bg-gray-100">
           <Toaster position="top-left" />
           <div className="flex flex-col min-h-screen">
-            <Header />
+            <Navbar />
             <main className="flex-grow">
               {children}
             </main>
