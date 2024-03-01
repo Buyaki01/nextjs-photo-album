@@ -3,14 +3,19 @@
 import { useCurrentUser } from "@/hooks/use-current-user"
 import { signOut } from "next-auth/react"
 import { AiFillCaretDown } from "react-icons/ai"
-import SignoutModal from "./SignoutModal"
+import SignoutModal from "../SignoutModal"
 import { useState } from "react"
 import toast from "react-hot-toast"
 import { useRouter } from "next/navigation"
+import { FaHome } from "react-icons/fa"
+import { IoMdAlbums } from "react-icons/io"
+import { MdMenu } from "react-icons/md"
+import MobileMenu from "./MobileMenu"
 
-const Header = () => {
+const Navbar = () => {
   const user = useCurrentUser()
   const [isSignOutModalOpen, setIsSignOutModalOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const router = useRouter()
 
   const navigateToHome = () => {
@@ -35,23 +40,41 @@ const Header = () => {
     setIsSignOutModalOpen(false)
   }
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+  const closeMenu = () => {
+    setIsMenuOpen(false)
+  }
+
   return (
-    <div className="flex justify-between bg-secondary text-white p-4 items-center mb-4">
-      <h1 className="text-3xl font-bold p-2">
+    <div className="flex justify-between bg-secondary text-white p-2 md:p-4 items-center mb-4 border">
+      <h1 className="text-xl md:text-3xl font-bold md:p-2">
         <button
-          className="cursor-pointer hover:underline"
+          className="cursor-pointer hover:underline flex items-center gap-1 whitespace-nowrap"
           onClick={navigateToHome}
         >
+          <IoMdAlbums />
           Photo Album
         </button>
       </h1>
-      <div className="flex gap-4 p-2 items-center text-xl">
-        <div>
+
+      <div className={`md:hidden ${isMenuOpen ? 'hidden' : 'block'}`}>
+        <MdMenu
+          className="text-xl cursor-pointer"
+          onClick={toggleMenu}
+        />
+      </div>
+
+      <div className={`flex gap-4 p-2 items-center text-lg md:text-xl ${isMenuOpen ? "flex-col md:flex" : "hidden md:flex"}`}>
+        <div className="hidden md:block">
           <button
-            className="cursor-pointer hover:underline"
+            className="cursor-pointer hover:underline flex items-center gap-1 whitespace-nowrap"
             onClick={navigateToHome}
           >
-            Home
+            <FaHome />
+            <span>Home</span>
           </button>
         </div>
 
@@ -84,8 +107,18 @@ const Header = () => {
           }
         </div>
       </div>
+
+      {isMenuOpen && (
+        <MobileMenu
+          onClose={closeMenu}
+          onHomeClick={navigateToHome}
+          onSignOutClick={handleSignOutClick}
+          isUserSignedIn={!!user}
+        />
+      )}
+
     </div>
   )
 }
 
-export default Header
+export default Navbar

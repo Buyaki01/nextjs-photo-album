@@ -44,7 +44,7 @@ const HomePage = () => {
           </div>
         ) 
         : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 m-3 gap-2 md:gap-6 p-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 m-3 gap-2 md:gap-6 p-3">
             {users && users.map((user) => (
               <Link
                 key={user.id}
