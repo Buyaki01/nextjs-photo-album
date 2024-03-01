@@ -4,10 +4,10 @@ import { MdClose } from "react-icons/md"
 
 const MobileMenu = ({ onClose, onHomeClick, onSignOutClick, isUserSignedIn }) => {
   return (
-    <div className="fixed inset-x-0 top-20 z-50 bg-gray-500 bg-opacity-75">
+    <div className="-mt-4 absolute top-full right-0">
       <div className="bg-mobile-menu p-6 rounded-md text-white">
         <div className="flex justify-end">
-          <button onClick={onClose} className="text-black">
+          <button onClick={onClose} className="text-white">
             <MdClose className="text-2xl" />
           </button>
         </div>
