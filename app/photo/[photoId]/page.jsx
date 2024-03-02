@@ -119,7 +119,7 @@ const EditPhotoPage = () => {
 
               {isEditModalOpen && (
                 <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
-                  <div className="bg-white p-6 rounded-md w-1/2">
+                  <div className="bg-white p-6 rounded-md md:w-1/2">
                     <label htmlFor="editedTitle" className="block text-sm font-medium text-gray-700">
                       Edit Photo Title
                     </label>

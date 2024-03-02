@@ -67,7 +67,7 @@ const UserPage = () => {
               </div>
             }
             <div className="m-3">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-4 p-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2 md:gap-4 p-4">
                 {userAlbums.map((album) => (
                   <Link href={`/album/${album.id}`} key={album.id}>
                     <div
