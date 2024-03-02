@@ -11,12 +11,15 @@ import { FaHome } from "react-icons/fa"
 import { IoMdAlbums } from "react-icons/io"
 import { MdMenu } from "react-icons/md"
 import MobileMenu from "./MobileMenu"
+import { useMediaQuery } from 'react-responsive'
 
 const Navbar = () => {
   const user = useCurrentUser()
   const [isSignOutModalOpen, setIsSignOutModalOpen] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const router = useRouter()
+
+  const isSmallScreen = useMediaQuery({ maxWidth: 640 })
 
   const navigateToHome = () => {
     if (!user) {
@@ -84,7 +87,7 @@ const Navbar = () => {
               <div className="relative group">
                 <div 
                   className="flex gap-1 items-center border rounded-full px-4 py-1 cursor-pointer hover:text-primary"
-                  onClick={handleSignOutClick}
+                  onClick={isSmallScreen ? signOut() : handleSignOutClick}
                 >
                   <div>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -95,14 +98,19 @@ const Navbar = () => {
                   <AiFillCaretDown className="mt-1"/>
                 </div>
 
-                <SignoutModal
-                  isOpen={isSignOutModalOpen}
-                  title="Sign Out"
-                  description={`Are you sure you want to sign out, ${user?.name}?`}
-                  confirmText="Sign Out"
-                  onCancel={handleSignOutCancel}
-                  onConfirm={handleSignOutConfirm}
-                />
+                <div className={`md:${isSignOutModalOpen ? 'SignoutModal' : ''}`}>
+                  {isSignOutModalOpen && (
+                    <SignoutModal
+                      isOpen={isSignOutModalOpen}
+                      title="Sign Out"
+                      description={`Are you sure you want to sign out, ${user?.name}?`}
+                      confirmText="Sign Out"
+                      onCancel={handleSignOutCancel}
+                      onConfirm={handleSignOutConfirm}
+                    />
+                  )}
+                </div>
+
               </div>
               )
             }
