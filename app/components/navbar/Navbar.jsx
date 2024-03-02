@@ -113,7 +113,6 @@ const Navbar = () => {
           <MobileMenu
             onClose={closeMenu}
             onHomeClick={navigateToHome}
-            onSignOutClick={handleSignOutClick}
             isUserSignedIn={!!user}
           />
         )}
