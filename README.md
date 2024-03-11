@@ -24,6 +24,9 @@ the application does
 - **React Testing Library**
 - **Winston**: To create a logging service for application errors
 
+### System Requirements
+- **Node.js 18.17 or later** 
+
 ### Getting Started
 To get started with this app, follow these steps:
 
